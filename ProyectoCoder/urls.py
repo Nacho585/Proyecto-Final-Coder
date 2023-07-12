@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ProyectoCoder.views import saludo #Aca importo el modulo y el metodo para vincularlo a un URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('saludo/', saludo) #el primer argumento es como llamaremos a la funcion segun la pagina, podemos escribir lo que querramos. el 2 si debe llamarse por el nombre q pusimos en views.
 ]
