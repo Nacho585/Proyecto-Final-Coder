@@ -1,5 +1,5 @@
 """
-URL configuration for Proyecto1 project.
+URL configuration for ProyectoCoder project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ProyectoCoder.views import saludo #Aca importo el modulo y el metodo para vincularlo a un URL
+from AppCoder.views import estacion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/', saludo) #el primer argumento es como llamaremos a la funcion segun la pagina, podemos escribir lo que querramos. el 2 si debe llamarse por el nombre q pusimos en views.
+    path('estacion/' , estacion ),
 ]
