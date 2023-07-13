@@ -4,11 +4,23 @@
 
 {% block contenidoQueCambia %}
 
-
-
-<h1>Estacion = {{estacion.nombre}} Codigo = {{estacion.codigo}}</h1>
-
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Estaciones Activas</title>
+</head>
+<body>
+    <center>
+    <h1 class="mb-5">Puntos de venta</h1>
+    <h1>Estaciones</h1>
+    <ul>
+        {% for estacion in estaciones %}
+        <li>{{ estacion.nombre }} - {{ estacion.codigo }}</li>
+        {% endfor %}
+    </ul>
+    </center>
+</body>
+</html>
 
 {% endblock %}
 

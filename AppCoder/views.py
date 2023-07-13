@@ -17,7 +17,8 @@ def inicio(request):
     return render(request, 'AppCoder/inicio.html')
 
 def estacion(request): 
-    return render(request, 'AppCoder/estacion.html')
+    estaciones = Estacion.objects.all()
+    return render(request, 'AppCoder/estacion.html', {'estaciones': estaciones})
 
 def sensorshampoo(request):
     return render(request, 'AppCoder/sensorshampoo.html')

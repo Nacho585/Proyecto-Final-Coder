@@ -1,3 +1,8 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,19 +11,23 @@
     <title>Formulario - Agregar Estacion</title>
 </head>
 <body>
+    <center>
     {% if miFormulario.errors %}
         <p style="color: red;"> Están mal los datos, revisar</p>
     {% endif %}
-
+    <h1 class="mb-5">Agregue un punto de venta</h1>
     <form action="" method="POST"> {% csrf_token %}
        
         <table>
 
-            {{miFormulario.as_table}}
+            {{miFormulario.as_ul}}
 
         </table>
 
         <input type="submit" value="Enviar">
     </form>
+    </center>
 </body>
 </html>
+
+{% endblock %}
