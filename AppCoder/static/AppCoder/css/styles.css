@@ -10839,14 +10839,17 @@ textarea.form-control-lg {
 }
 
 header.masthead {
+  min-height: 900px !important;
+  min-width: 1600px !important;
   position: relative;
   background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background: url("../assets/img/bg-masthead123.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
 header.masthead:before {
+  min-width: 1600px !important;
   content: "";
   position: absolute;
   background-color: #1c375e;

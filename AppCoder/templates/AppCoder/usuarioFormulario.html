@@ -8,14 +8,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario - Agregar Estacion</title>
+    <title>Formulario - Agregar Usuario</title>
 </head>
 <body>
     <center>
     {% if miFormulario.errors %}
         <p style="color: red;"> Están mal los datos, revisar</p>
     {% endif %}
-    <h1 class="mb-5">Agregue un punto de venta</h1>
+    <h1 class="mb-5">Agregue un usuario</h1>
     <form action="" method="POST"> {% csrf_token %}
        
         <table>

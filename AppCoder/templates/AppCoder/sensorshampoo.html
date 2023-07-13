@@ -3,4 +3,22 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Sensores</title>
+</head>
+<body>
+    <center>
+    <h1 class="mb-5">Sensores de Shampoo</h1>
+    <ul>
+        {% for sensor in sensores %}
+        <li>{{ sensor.nombre }} - {{ sensor.nivel }}</li>
+        {% endfor %}
+    </ul>
+    </center>
+</body>
+</html>
+
 {% endblock %}

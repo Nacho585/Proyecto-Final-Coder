@@ -1,6 +1,24 @@
 {% extends 'AppCoder/padre.html' %}
 
 {% load static %}
-
 {% block contenidoQueCambia %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Usuarios</title>
+</head>
+<body>
+    <center>
+    <h1 class="mb-5">Usuarios cargados</h1>
+    <ul>
+        {% for usuario in usuarios %}
+        <li>{{ usuario.nombre }} - {{ usuario.codigo }}</li>
+        {% endfor %}
+    </ul>
+    </center>
+</body>
+</html>
+
+
 {% endblock %}
