@@ -13,7 +13,7 @@
     <h1 class="mb-5">Usuarios cargados</h1>
     <ul>
         {% for usuario in usuarios %}
-        <li>{{ usuario.nombre }} - {{ usuario.codigo }}</li>
+        <li>{{ usuario.nombre }} - {{ usuario.apellido }} - {{ usuario.email }}</li>
         {% endfor %}
     </ul>
     </center>
