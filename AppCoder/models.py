@@ -18,7 +18,7 @@ class sensorShampoo(models.Model):
         return f"Nombre Sensor: {self.nombre} - nivel: {self.nivel}"
     
 class Usuario(models.Model):
-    nombre = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=20 , unique=True)
     apellido = models.CharField(max_length=20)
     email = models.EmailField()
 

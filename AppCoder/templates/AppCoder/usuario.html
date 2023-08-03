@@ -14,6 +14,10 @@
     <ul>
         {% for usuario in usuarios %}
         <li>{{ usuario.nombre }} - {{ usuario.apellido }} - {{ usuario.email }}</li>
+        <button>
+            <a href="{% url 'EliminarUsuario' usuario.nombre %}"> Eliminar</a>
+            <a href="{% url 'EditarUsuario' usuario.nombre %}"> Editar</a>
+        </button>
         {% endfor %}
     </ul>
     </center>

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from AppCoder.models import Estacion,  sensorShampoo, Usuario
 from AppCoder.forms import EstacionFormulario , UsuarioFormulario , SensorFormulario
 
+
 # Create your views here.
 
 """def estacion(self):
@@ -45,6 +46,36 @@ def estacionFormulario(request):
 
     return render(request, "AppCoder/estacionFormulario.html", {"miFormulario": miFormulario})
 
+def eliminarEstacion(request, estacion_nombre):
+
+    estacion = Estacion.objects.filter(nombre=estacion_nombre).first()
+    estacion.delete()
+
+    estaciones = Estacion.objects.all()
+
+    return render (request, "AppCoder/estacion.html", {"estaciones":estaciones})
+
+def editarEstacion(request, estacion_nombre):
+    estacion = Estacion.objects.filter(nombre=estacion_nombre).first()
+
+    if request.method == "POST":
+        miFormulario = EstacionFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            estacion.nombre = informacion['nombre']
+            estacion.codigo = informacion['codigo']
+
+            estacion.save()
+            return render (request, "AppCoder/inicio.html")
+    
+    else:
+        miFormulario = EstacionFormulario(initial={'nombre': estacion.nombre, 'codigo': estacion.codigo})
+
+    return render (request, "AppCoder/editarEstacion.html", {"miFormulario":miFormulario,"estacion_nombre":estacion_nombre})
+
 def sensorFormulario(request):
     if request.method == 'POST':
         miFormulario = SensorFormulario(request.POST) # aca llega la info del HTML
@@ -61,6 +92,36 @@ def sensorFormulario(request):
         miFormulario = SensorFormulario()
 
     return render(request, "AppCoder/sensorFormulario.html", {"miFormulario": miFormulario})
+
+def eliminarSensor(request, sensor_nombre):
+
+    sensor = sensorShampoo.objects.filter(nombre=sensor_nombre).first()
+    sensor.delete()
+
+    sensores = sensorShampoo.objects.all()
+
+    return render (request, "AppCoder/sensorshampoo.html", {"sensores":sensores})
+
+def editarSensor(request, sensor_nombre):
+    sensor = sensorShampoo.objects.filter(nombre=sensor_nombre).first()
+
+    if request.method == "POST":
+        miFormulario = SensorFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            sensor.nombre = informacion['nombre']
+            sensor.nivel = informacion['nivel']
+
+            sensor.save()
+            return render (request, "AppCoder/inicio.html")
+    
+    else:
+        miFormulario = SensorFormulario(initial={'nombre': sensor.nombre, 'nivel': sensor.nivel})
+
+    return render (request, "AppCoder/editarSensor.html", {"miFormulario":miFormulario,"sensor_nombre":sensor_nombre})
 
 def usuarioFormulario(request):
     if request.method == 'POST':
@@ -79,5 +140,33 @@ def usuarioFormulario(request):
 
     return render(request, "AppCoder/usuarioFormulario.html", {"miFormulario": miFormulario})
 
+def eliminarUsuario(request, usuario_nombre):
 
+    usuario = Usuario.objects.filter(nombre=usuario_nombre).first()
+    usuario.delete()
 
+    usuarios = Usuario.objects.all()
+
+    return render (request, "AppCoder/usuario.html", {"usuarios":usuarios})
+
+def editarUsuario(request, usuario_nombre):
+    usuario = Usuario.objects.filter(nombre=usuario_nombre).first()
+
+    if request.method == "POST":
+        miFormulario = UsuarioFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            usuario.nombre = informacion['nombre']
+            usuario.apellido = informacion['apellido']
+            usuario.email = informacion['email']
+
+            usuario.save()
+            return render (request, "AppCoder/inicio.html")
+    
+    else:
+        miFormulario = UsuarioFormulario(initial={'nombre': usuario.nombre, 'apellido': usuario.apellido , 'email': usuario.email})
+
+    return render (request, "AppCoder/editarUsuario.html", {"miFormulario":miFormulario,"usuario_nombre":usuario_nombre})

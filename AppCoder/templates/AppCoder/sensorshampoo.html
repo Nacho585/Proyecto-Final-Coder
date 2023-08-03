@@ -15,6 +15,10 @@
     <ul>
         {% for sensor in sensores %}
         <li>{{ sensor.nombre }} - {{ sensor.nivel }}</li>
+        <button>
+            <a href="{% url 'EliminarSensor' sensor.nombre %}"> Eliminar</a>
+            <a href="{% url 'EditarSensor' sensor.nombre %}"> Editar</a>
+        </button>
         {% endfor %}
     </ul>
     </center>

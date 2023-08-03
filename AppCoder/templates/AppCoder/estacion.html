@@ -16,6 +16,11 @@
     <ul>
         {% for estacion in estaciones %}
         <li>{{ estacion.nombre }} - {{ estacion.codigo }}</li>
+        <button>
+            <a href="{% url 'EliminarEstacion' estacion.nombre %}"> Eliminar</a>
+            <a href="{% url 'EditarEstacion' estacion.nombre %}"> Editar</a>
+        </button>
+
         {% endfor %}
     </ul>
     </center>
