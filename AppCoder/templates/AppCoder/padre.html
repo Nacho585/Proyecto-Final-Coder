@@ -17,6 +17,9 @@
         <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet" /> 
     </head>
     <body>
+        {% if mensaje %}
+            <p>{{mensaje}}</p>
+        {% endif %}
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
@@ -24,11 +27,41 @@
                 <a class="navbar-brand" href="{% url 'Estacion' %}">Estacion</a>
                 <a class="navbar-brand" href="{% url 'sensorShampoo' %}">Sensor Shampoo</a>
                 <a class="navbar-brand" href="{% url 'Usuario' %}">Usuario</a>
-                <a class="navbar-brand" href="{% url 'EstacionFormulario' %}">Agregar estacion</a>
-                <a class="navbar-brand" href="{% url 'SensorFormulario' %}">Agregar sensor</a>
-                <a class="navbar-brand" href="{% url 'UsuarioFormulario' %}">Agregar usuario</a>
-                <a class="btn btn-primary" href="http://127.0.0.1:8000/Login/login">Iniciar Sesion</a>
-                <a class="btn btn-primary" href="http://127.0.0.1:8000/Login/logout">Cerrar Sesion</a>
+                
+                <li style="list-style: none; font-weight: bold;" class="navbar-brand dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Agregar
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="navbar-brand" href="{% url 'EstacionFormulario' %}">Agregar estacion</a></li>
+                        <li><a class="navbar-brand" href="{% url 'SensorFormulario' %}">Agregar sensor</a></li>
+                        <li><a class="navbar-brand" href="{% url 'UsuarioFormulario' %}">Agregar usuario</a></li>
+                    </ul>
+                </li>            
+                {% if not request.user.is_authenticated %}
+                    <a class="btn btn-primary" href="http://127.0.0.1:8000/Login/login">Iniciar Sesion</a>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                <li style="list-style: none; font-weight: bold;" class="navbar-brand dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img height="30px" src="{{url}}" />
+                        <span class="caret"></span>
+                        {{user.username}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'AgregarAvatar' %}">Agregar Avatar</a></li>
+                        <li><a class="btn btn-primary" href="http://127.0.0.1:8000/Login/logout">Cerrar Sesion</a></li>
+                    </ul>
+                </li>
+                {% for usuario in avatares %}
+                    <img src="{{ usuario.avatar.url }}" alt="{{ usuario.username }} avatar">
+                {% endfor %}
+
+                {% endif %}
+
+                
             </div>
         </nav>
         <!-- Masthead-->
@@ -65,6 +98,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="{% url 'about' %}">Acerca de Nosotros!</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
                     </div>

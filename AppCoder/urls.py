@@ -15,4 +15,7 @@ urlpatterns = [
     path('editarSensor/<sensor_nombre>/', views.editarSensor, name="EditarSensor"), 
     path('eliminarUsuario/<usuario_nombre>/', views.eliminarUsuario, name="EliminarUsuario"),
     path('editarUsuario/<usuario_nombre>/', views.editarUsuario, name="EditarUsuario"),
+    path('editarPerfil', views.editarPerfil, name='EditarPerfil'),
+    path('agregarAvatar', views.agregarAvatar, name='AgregarAvatar'),
+    path('about', views.about, name='about'),
 ]

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from AppCoder.models import Estacion,  sensorShampoo, Usuario
 from AppCoder.forms import EstacionFormulario , UsuarioFormulario , SensorFormulario
 from django.contrib.auth.decorators import login_required
+from Login.models import Avatar
+from Login.forms import *
 
 
 # Create your views here.
@@ -17,7 +19,11 @@ from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
+    avatares = Avatar.objects.filter(user=request.user.id)
     return render(request, 'AppCoder/inicio.html')
+
+def about(request):
+    return render(request, 'AppCoder/about.html')
 
 @login_required
 def estacion(request): 
@@ -184,3 +190,49 @@ def editarUsuario(request, usuario_nombre):
         miFormulario = UsuarioFormulario(initial={'nombre': usuario.nombre, 'apellido': usuario.apellido , 'email': usuario.email})
 
     return render (request, "AppCoder/editarUsuario.html", {"miFormulario":miFormulario,"usuario_nombre":usuario_nombre})
+
+@login_required
+def agregarAvatar(request):
+    if request.method == "POST":
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+        if miFormulario.is_valid():
+            u = User.objects.get(username=request.user)
+            avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen'])
+            avatar.save()
+
+            return render(request, "AppCoder/inicio.html")
+    else:
+        miFormulario=AvatarFormulario()
+        
+    return render(request, "AppCoder/agregarAvatar.html", {'miFormulario': miFormulario})
+    
+
+# Vista de editar el perfil
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+
+            usuario.save()
+
+            return render(request, "AppCoder/inicio.html")
+
+    else:
+
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+
+    return render(request, "AppCoder/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
