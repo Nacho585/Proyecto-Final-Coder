@@ -12,8 +12,8 @@ Luego nos situamos en la carpeta ProyectoCoder donde esta el archivo manage.py
 Primero escribimos el comando "pip install -r requirements.txt" para asegurarnos de tener todo lo necesario para correr nuestro proyecto
 Entonces ahora si podemos ejecutarlo, escribimos en consola "python manage.py runserver"
 Luego nos dirigimos a http://127.0.0.1:8000/AppCoder/
-(intente hacer q se diriga solo pero me decia q la pagina no existia cuando aparentemente tenia todo bien vinculado)
-Ahi podemos visualizar la pagina, y solo podremos acceder al inicio y al about sin habernos loggeado. 
+(intentamos hacer q se dirija solo pero nos decia q la pagina no existia cuando aparentemente tenia todo bien vinculado)
+Ahi podemos visualizar la pagina, y solo podremos acceder al inicio y al about sin habernos logueado. 
 una vez nos hayamos logeado podremos entrar a ver las estaciones, sensores, usuarios.
 podremos agregar editar y eliminar estos elementos.
 y podremos modificar nuestros perfiles hasta agregandole avatares.
