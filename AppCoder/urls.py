@@ -14,5 +14,5 @@ urlpatterns = [
     path('eliminarSensor/<sensor_nombre>/', views.eliminarSensor, name="EliminarSensor"),
     path('editarSensor/<sensor_nombre>/', views.editarSensor, name="EditarSensor"), 
     path('eliminarUsuario/<usuario_nombre>/', views.eliminarUsuario, name="EliminarUsuario"),
-    path('editarUsuario/<usuario_nombre>/', views.editarUsuario, name="EditarUsuario"), 
+    path('editarUsuario/<usuario_nombre>/', views.editarUsuario, name="EditarUsuario"),
 ]

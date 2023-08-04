@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from AppCoder.views import estacion
 
 urlpatterns = [
-    path('AppCoder/signup', admin.site.urls),
+    # path('AppCoder/signup', admin.site.urls),
     path('admin/', admin.site.urls),
     path('AppCoder/', include('AppCoder.urls')),
+    path('Login/', include('Login.urls')),
 ]

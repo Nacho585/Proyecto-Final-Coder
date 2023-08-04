@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from AppCoder.models import Estacion,  sensorShampoo, Usuario
 from AppCoder.forms import EstacionFormulario , UsuarioFormulario , SensorFormulario
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -14,21 +15,26 @@ from AppCoder.forms import EstacionFormulario , UsuarioFormulario , SensorFormul
 
     return HttpResponse(documentoDeTexto)"""
 
+
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
 
+@login_required
 def estacion(request): 
     estaciones = Estacion.objects.all()
     return render(request, 'AppCoder/estacion.html', {'estaciones': estaciones})
 
+@login_required
 def sensorshampoo(request):
     sensores = sensorShampoo.objects.all()
     return render(request, 'AppCoder/sensorshampoo.html', {'sensores' : sensores})
 
+@login_required
 def usuario(request):
     usuarios = Usuario.objects.all()
     return render(request, 'AppCoder/usuario.html' , {'usuarios' : usuarios})
 
+@login_required
 def estacionFormulario(request):
     if request.method == 'POST':
         miFormulario = EstacionFormulario(request.POST) # aca llega la info del HTML
@@ -46,6 +52,7 @@ def estacionFormulario(request):
 
     return render(request, "AppCoder/estacionFormulario.html", {"miFormulario": miFormulario})
 
+@login_required
 def eliminarEstacion(request, estacion_nombre):
 
     estacion = Estacion.objects.filter(nombre=estacion_nombre).first()
@@ -55,6 +62,7 @@ def eliminarEstacion(request, estacion_nombre):
 
     return render (request, "AppCoder/estacion.html", {"estaciones":estaciones})
 
+@login_required
 def editarEstacion(request, estacion_nombre):
     estacion = Estacion.objects.filter(nombre=estacion_nombre).first()
 
@@ -76,6 +84,7 @@ def editarEstacion(request, estacion_nombre):
 
     return render (request, "AppCoder/editarEstacion.html", {"miFormulario":miFormulario,"estacion_nombre":estacion_nombre})
 
+@login_required
 def sensorFormulario(request):
     if request.method == 'POST':
         miFormulario = SensorFormulario(request.POST) # aca llega la info del HTML
@@ -93,6 +102,7 @@ def sensorFormulario(request):
 
     return render(request, "AppCoder/sensorFormulario.html", {"miFormulario": miFormulario})
 
+@login_required
 def eliminarSensor(request, sensor_nombre):
 
     sensor = sensorShampoo.objects.filter(nombre=sensor_nombre).first()
@@ -102,6 +112,7 @@ def eliminarSensor(request, sensor_nombre):
 
     return render (request, "AppCoder/sensorshampoo.html", {"sensores":sensores})
 
+@login_required
 def editarSensor(request, sensor_nombre):
     sensor = sensorShampoo.objects.filter(nombre=sensor_nombre).first()
 
@@ -123,6 +134,7 @@ def editarSensor(request, sensor_nombre):
 
     return render (request, "AppCoder/editarSensor.html", {"miFormulario":miFormulario,"sensor_nombre":sensor_nombre})
 
+@login_required
 def usuarioFormulario(request):
     if request.method == 'POST':
         miFormulario = UsuarioFormulario(request.POST) # aca llega la info del HTML
@@ -140,6 +152,7 @@ def usuarioFormulario(request):
 
     return render(request, "AppCoder/usuarioFormulario.html", {"miFormulario": miFormulario})
 
+@login_required
 def eliminarUsuario(request, usuario_nombre):
 
     usuario = Usuario.objects.filter(nombre=usuario_nombre).first()
@@ -149,6 +162,7 @@ def eliminarUsuario(request, usuario_nombre):
 
     return render (request, "AppCoder/usuario.html", {"usuarios":usuarios})
 
+@login_required
 def editarUsuario(request, usuario_nombre):
     usuario = Usuario.objects.filter(nombre=usuario_nombre).first()
 
